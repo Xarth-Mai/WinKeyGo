@@ -1,60 +1,61 @@
 # WinKeyGo
 
-🚀 **WinKeyGo** 是一个用 Rust 编写的 Windows 快捷键工具，允许你为任意程序或文件设置自定义快捷键，一键启动，高效办公。
+🚀 **WinKeyGo** is a lightweight and user-friendly Windows hotkey launcher built with Rust.
 
 ---
 
-## ✨ 功能特点
+## ✨ Features
 
-- 🧩 自定义快捷键，启动任意程序、文件夹或网页
-- 🖼️ 简洁易用的图形界面
-- 💾 自动保存配置，支持导入导出
-- 🔧 系统托盘常驻，可后台运行
-- 🚀 支持开机自启
+- 🧩 Define custom hotkeys to launch any app, folder, or URL
+- 🖼️ Simple and intuitive graphical user interface
+- 💾 Auto-save configuration with import/export support
+- 🔧 Runs in the system tray, background friendly
+- 🚀 Optional auto-start on boot
 
 ---
 
-## 📦 安装方式
+## 📦 Installation
 
-### 下载 Release 版本（建议）
-前往 [Releases](https://github.com/Xarth-Mai/WinKeyGo/releases) 下载最新版本的 `.zip` 包，解压后运行 `WinKeyGo.exe` 即可。
+### Download Release (Recommended)
 
-### 使用 Cargo 构建（开发者）
+Go to [Releases](https://github.com/Xarth-Mai/WinKeyGo/releases) and download the latest `.zip` file. Extract and run `WinKeyGo.exe`.
+
+### Build with Cargo (Developers)
 
 ```bash
 git clone https://github.com/Xarth-Mai/WinKeyGo.git
-cd winkeygo
+cd WinKeyGo
 cargo run --release
 ```
 
 ---
 
-## 🧰 快速上手
+## 🧰 Quick Start
 
-1. 打开 WinKeyGo，点击 “添加快捷键”
-2. 选择一个快捷键组合（如 `Ctrl+Alt+N`）
-3. 选择要启动的目标程序或文件
-4. 点击保存，即可生效
-
----
-
-## 💡 路线图
-
-- [ ] 快捷键注册与监听
-- [ ] GUI 界面
-- [ ] 自启动设置
-- [ ] 系统托盘支持
-- [ ] 快捷键冲突检测
+1. Launch WinKeyGo and click "Add Hotkey"
+2. Choose a key combination (e.g. `Ctrl+Alt+N`)
+3. Select the target app or file to launch
+4. Save and the hotkey takes effect immediately
 
 ---
 
-## 🛠 技术栈
+## 💡 Roadmap
+
+- [ ] Hotkey registration and handling
+- [ ] GUI interface
+- [ ] Auto-start support
+- [ ] System tray integration
+- [ ] Hotkey conflict detection
+
+---
+
+## 🛠 Tech Stack
 
 - Rust
-- `windows` crate（Win32 API）
+- [`windows`](https://crates.io/crates/windows) crate (Win32 API)
 
 ---
 
-## 📃 许可证
+## 📃 License
 
-[MPL-2.0 license](LICENSE)
+Released under the [MPL-2.0 license](LICENSE).
