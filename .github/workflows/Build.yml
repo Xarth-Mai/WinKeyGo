@@ -1,0 +1,49 @@
+name: Build
+
+on:
+  workflow_dispatch:
+
+env:
+  CRATE_NAME: winkeygo
+
+jobs:
+  build:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        target: [x86_64-pc-windows-msvc, aarch64-pc-windows-msvc]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+
+      - name: Set build metadata
+        shell: bash
+        run: |
+          VERSION="$(git rev-parse --short HEAD)"
+          ARCH=$(echo "${{ matrix.target }}" | cut -d'-' -f1)
+          FILENAME="${{ env.CRATE_NAME }}-${VERSION}-${ARCH}"
+
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "ARCH=$ARCH" >> $GITHUB_ENV
+          echo "FILENAME=$FILENAME" >> $GITHUB_ENV
+
+      - name: Build
+        run: cargo build --release --target ${{ matrix.target }} --package ${{ env.CRATE_NAME }}
+
+      - name: Move and rename binary
+        shell: pwsh
+        run: |
+          $source = "target/${{ matrix.target }}/release/${{ env.CRATE_NAME }}.exe"
+          $dest = "./${{ env.FILENAME }}.exe"
+          Copy-Item $source -Destination $dest
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.FILENAME }}
+          path: ${{ env.FILENAME }}.exe
